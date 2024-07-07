@@ -71,7 +71,7 @@ const UserSchema:Schema<User> = new Schema({
 })
 
 
-//TODO: next js edgecase pe run karta hai ? 
+//TODO: next js edge case pe run karta hai ? jaise jaise demant create hoti hai waise waise connection banta rehta hai 
 
 const UserModel = (mongoose.models.User as mongoose.Model<User>) || mongoose.model<User>("User",UserSchema) 
 
