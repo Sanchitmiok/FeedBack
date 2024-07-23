@@ -3,7 +3,6 @@ import dbConnect from "@/lib/dbConnect";
 import { sendVerificationEmail } from "@/helper/sendVerificationEmail";
 import UserModel from "@/model/User";
 import bcrypt from "bcryptjs";
-import { use } from "react";
 
 export async function POST(request: Request) {
   await dbConnect();
@@ -49,6 +48,8 @@ export async function POST(request: Request) {
         await existingUserByEmail.save();
       }
     } else {
+      //if user email is not found that means we have to create new user 
+
       //password encryption
       const hasedPass = await bcrypt.hash(password, 10);
 
@@ -76,7 +77,18 @@ export async function POST(request: Request) {
       verifyCode
     );
 
-    if (!emailResponse.success) {
+    if (emailResponse.success) {
+
+      return Response.json(
+        {
+          success: true,
+          message: "User verified succesfully",
+        },
+        { status: 200}
+      );
+      
+    } else {
+
       return Response.json(
         {
           success: false,
@@ -84,15 +96,8 @@ export async function POST(request: Request) {
         },
         { status: 500 }
       );
-    } else {
-      return Response.json(
-        {
-          success: true,
-          message: "Usser ",
-        },
-        { status: 500 }
-      );
     }
+
   } catch (error) {
     console.error("Error registering user", error);
     return Response.json(
