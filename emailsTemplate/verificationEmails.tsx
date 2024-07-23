@@ -10,6 +10,7 @@ import {
   Button,
 } from "@react-email/components";
 
+//typeScript
 interface VerificationEmailProps {
   username: string;
   otp: string;
@@ -34,7 +35,7 @@ export default function VerificationEmail({
           fontStyle="normal"
         />
       </Head>
-      <Preview>Here&apos;s your verification code: {otp}</Preview>
+      <Preview>Here is your verification code: {otp}</Preview>
       <Section>
         <Row>
           <Heading as="h2">Hello {username},</Heading>

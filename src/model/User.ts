@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-//ek data type banaya hai hamne
+//ek data type banaya hai hamne :: TypeScript
 export interface Message extends Document {
   content: string;
   createdAt: Date;
