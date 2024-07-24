@@ -70,7 +70,7 @@ export async function POST(request: Request) {
 
       await newUser.save();
     }
-
+      //send verification code 
     const emailResponse = await sendVerificationEmail(
       email,
       username,
@@ -82,11 +82,11 @@ export async function POST(request: Request) {
       return Response.json(
         {
           success: true,
-          message: "User verified succesfully",
+          message: "User registered succesfully || pls verify your email",
         },
         { status: 200}
       );
-      
+
     } else {
 
       return Response.json(
