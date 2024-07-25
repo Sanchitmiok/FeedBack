@@ -147,7 +147,7 @@ bcrypt is a robust choice for password hashing due to its security features like
 
 Next.js running on edge cases means it is hosted on an Edge Network. Edge Networks use geographically distributed servers to deliver content quickly and efficiently to users.
 
-### Benefits of running Next.js on Edge Networks
+#### Benefits of running Next.js on Edge Networks
 
 1. **Low Latency**: Closer servers result in faster response times for users.
 2. **Scalability**: Easily handles high traffic by distributing the load.
@@ -204,8 +204,43 @@ In essence, **dependencies** are for production use, while **devDependencies** a
 
 These codes help indicate the result of HTTP requests.</li>
 
-<li>Here</li>
+<li>
 
+### What is JWT
+
+JWT stands for JSON Web Token. It's a way to securely transmit information between parties as a JSON object. Here’s a brief explanation:
+
+1. **Structure**: A JWT is composed of three parts separated by dots (`.`):
+   - **Header**: Contains metadata about the token, typically the type (JWT) and the signing algorithm (e.g., HMAC SHA256).
+   - **Payload**: Contains the claims, which are statements about an entity (typically the user) and additional data.
+   - **Signature**: Used to verify the token's authenticity. It's created by taking the encoded header and payload, and signing it using a secret or a public/private key pair.
+
+   Example: `xxxxx.yyyyy.zzzzz`
+
+2. **Creation**:
+   - **Header**: Encoded in Base64Url.
+   - **Payload**: Encoded in Base64Url.
+   - **Signature**: Created by hashing the encoded header and payload with a secret or key.
+
+3. **Usage**:
+   - **Authentication**: Commonly used for authenticating users. When a user logs in, the server generates a JWT and sends it to the client. The client then sends this token with every subsequent request, allowing the server to verify the user's identity.
+   - **Authorization**: Can also contain information about what the user is allowed to do, helping with authorization decisions.
+
+4. **Verification**:
+   - The server receives the token and verifies the signature using the secret/key.
+   - If the signature is valid, the server trusts the claims in the token.
+
+5. **Benefits**:
+   - **Stateless**: No need to store session information on the server.
+   - **Scalable**: Easy to scale across multiple servers since each server can independently verify the token.
+   - **Compact**: JWTs are small and can be easily transmitted in URLs, HTTP headers, or cookies.
+
+6. **Security**: It's important to keep the secret/key secure, use HTTPS to protect tokens in transit, and implement proper expiration and token revocation mechanisms.
+
+
+</li>
+
+<li>Here</li>
 </ol>
 
 ## **Important Terms**
