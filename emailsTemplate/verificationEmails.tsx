@@ -10,7 +10,7 @@ import {
   Button,
 } from "@react-email/components";
 
-//typeScript
+// TypeScript interface
 interface VerificationEmailProps {
   username: string;
   otp: string;
@@ -35,33 +35,48 @@ export default function VerificationEmail({
           fontStyle="normal"
         />
       </Head>
-      <Preview>Here is your verification code: {otp}</Preview>
-      <Section>
-        <Row>
-          <Heading as="h2">Hello {username},</Heading>
+      <Preview>Your verification code is {otp}</Preview>
+      <Section style={{ width: '100%', maxWidth: '600px', margin: 'auto', padding: '20px', fontFamily: 'Roboto, Verdana, sans-serif' }}>
+        <Row style={{ marginBottom: '20px' }}>
+          <Heading as="h2" style={{ fontSize: '24px', margin: '0', color: '#333' }}>
+            Hello {username},
+          </Heading>
         </Row>
-        <Row>
-          <Text>
-            Thank you for registering. Please use the following verification
-            code to complete your registration:
+        <Row style={{ marginBottom: '20px' }}>
+          <Text style={{ fontSize: '16px', lineHeight: '1.5', color: '#555' }}>
+            Thank you for registering with us. Please use the following verification code to complete your registration:
           </Text>
         </Row>
-        <Row>
-          <Text>{otp}</Text>
-        </Row>
-        <Row>
-          <Text>
-            If you did not request this code, please ignore this email.
+        <Row style={{ marginBottom: '20px' }}>
+          <Text style={{ fontSize: '20px', fontWeight: 'bold', color: '#333' }}>
+            {otp}
           </Text>
         </Row>
-        {/* <Row>
-            <Button
-              href={`http://localhost:3000/verify/${username}`}
-              style={{ color: '#61dafb' }}
-            >
-              Verify here
-            </Button>
-          </Row> */}
+        <Row style={{ marginBottom: '20px' }}>
+          <Text style={{ fontSize: '16px', lineHeight: '1.5', color: '#555' }}>
+            If you did not request this code, please disregard this email.
+          </Text>
+        </Row>
+        {/* Uncomment and adjust the button styling as needed
+        <Row>
+          <Button
+            href={`http://localhost:3000/verify/${username}`}
+            style={{
+              display: 'inline-block',
+              padding: '10px 20px',
+              fontSize: '16px',
+              fontWeight: 'bold',
+              color: '#fff',
+              backgroundColor: '#007bff',
+              textDecoration: 'none',
+              borderRadius: '5px',
+              textAlign: 'center',
+            }}
+          >
+            Verify Here
+          </Button>
+        </Row>
+        */}
       </Section>
     </Html>
   );

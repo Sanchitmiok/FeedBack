@@ -240,7 +240,26 @@ JWT stands for JSON Web Token. It's a way to securely transmit information betwe
 
 </li>
 
+<li>
+
+### Diffrence between model and schema
+The terms "schema" and "model" are often used in different contexts, but they have distinct meanings:
+
+1. **Schema**:
+   - A schema is a **structured framework or blueprint** that defines the organization of data within a database. It includes details like tables, fields, data types, and relationships between tables¹.
+   - In cognitive psychology, a schema refers to a mental structure that helps individuals organize and interpret information².
+
+2. **Model**:
+   - In the context of databases, a model is an **abstract representation** of the data and the relationships between data. It provides a higher-level view of how data is organized and accessed³.
+   - In Mongoose (a MongoDB object modeling tool), a model is a **compiled version of the schema**. It represents the data structure and provides an interface for interacting with the database, including creating, reading, updating, and deleting documents⁴.
+
+In summary, a schema is more about the detailed structure and constraints of the data, while a model is about the representation and interaction with that data.
+
+</li>
+
+
 <li>Here</li>
+
 </ol>
 
 ## **Important Terms**

@@ -19,7 +19,7 @@ const MessageSchema: Schema<Message> = new Schema({
   },
 });
 
-//matlab mote taur pe user schema ka data type aise hi dikhega
+//matlab mote taur pe user schema ka data type aise hi dikhega :: type script
 export interface User extends Document {
   username: string;
   email: string;
