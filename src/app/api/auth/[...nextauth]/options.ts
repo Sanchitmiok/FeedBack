@@ -5,6 +5,7 @@ import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User";
 
 export const authOptions: NextAuthOptions = {
+
   providers: [
     CredentialsProvider({
       id: "credentials",
@@ -18,6 +19,7 @@ export const authOptions: NextAuthOptions = {
 
         try {
           const user = await UserModel.findOne({
+            //email ya fir username se serach karega
             $or: [
               { email: credentials.identifier },
               { username: credentials.identifier },
@@ -31,7 +33,7 @@ export const authOptions: NextAuthOptions = {
             throw new Error("Please verify your account before login");
           }
 
-          const isPassCorrect = await bcrypt.compare(
+          const isPassCorrect = await bcrypt.compare( // ye compare karega given password aur database me store password ko
             credentials.password,
             user.password
           );
@@ -39,7 +41,7 @@ export const authOptions: NextAuthOptions = {
           if (!isPassCorrect) {
             throw new Error("Incorrect Password");
           } else {
-            throw user;
+            throw user;  // ye user vapas provider ke pass jyega aur fir aage use hoga
           }
         } catch (error: any) {
           throw new Error(error);
@@ -49,6 +51,7 @@ export const authOptions: NextAuthOptions = {
   ],
 
   callbacks : {
+    // User ke login ke time JWT token ko customize karta hai.
       async jwt ({token , user}){
         if(user){
           token._id = user._id?.toString();
@@ -59,6 +62,7 @@ export const authOptions: NextAuthOptions = {
         return token;
       },
 
+      // Session create hone ke time session object ko customize karta hai.
       async session({session , token}){
         if(token){
           session.user._id = token._id;
@@ -68,11 +72,18 @@ export const authOptions: NextAuthOptions = {
         }
         return session;
       }
+
+      // Ye callbacks ensure karte hain ki user ke additional details JWT token aur session object me store ho, jo aapke application me user ke state ko manage karne me madadgar hote hain.
   },
+  
   session:{
     strategy:'jwt'
   },
+
+  // NextAuth.js configuration me ek secret key set karti hai jo JWT tokens aur session cookies ko sign aur encrypt karne ke liye use hoti hai.
   secret : process.env.NEXTAUTH_SECRET,
+
+  //jab user sign-in karne ki koshish karega, to /sign-in page pe redirect hoga.
   pages:{
     signIn : '/sign-in',
   }

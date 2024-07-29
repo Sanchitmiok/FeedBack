@@ -7,7 +7,7 @@ export const config = {
 };
 
 export async function middleware(request: NextRequest) {
-  const token = await getToken({ req: request });
+  const token = await getToken({ req: request });//Ye code NextAuth.js ka getToken function use karta hai jo request object se JWT (JSON Web Token) ko retrieve karta hai. Iska main kaam hai user ke authentication token ko extract karna.
 
   const url = request.nextUrl;
 
@@ -17,7 +17,7 @@ export async function middleware(request: NextRequest) {
       url.pathname.startsWith("/sign-up") ||
       url.pathname.startsWith("/verify") ||
       url.pathname.startsWith("/"))
-  ) {
+  ) { // u r alredy authenticated
     return NextResponse.redirect(new URL("/dasboard", request.url));
   }
 

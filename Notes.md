@@ -1,6 +1,6 @@
 # **NOTES**
 
-## **Dependency Section**
+# [ **Dependency Section** ]
 
 ### [ 1 ] Mongoose: Overview
 
@@ -138,7 +138,7 @@ bcrypt is a robust choice for password hashing due to its security features like
 
 
 
-## **Question section**
+# [ **Question section** ]
 
 <ol> 
 <li>
@@ -256,13 +256,74 @@ The terms "schema" and "model" are often used in different contexts, but they ha
 In summary, a schema is more about the detailed structure and constraints of the data, while a model is about the representation and interaction with that data.
 
 </li>
+<li>
 
+### NextRequest and NextResponse 
+### NextRequest
+- **NextRequest** is an extension of the native `Request` object.
+- It adds additional properties and methods useful for handling requests in Next.js middleware.
+- It provides enhanced capabilities for accessing request data, such as cookies, headers, and URL parameters.
+
+### NextResponse
+- **NextResponse** extends the native `Response` object.
+- It includes convenience methods for manipulating the response, such as setting cookies, redirecting, and sending JSON responses.
+- Common methods include:
+  - `NextResponse.json()`: Sends a JSON response.
+  - `NextResponse.redirect()`: Redirects to a specified URL.
+  - `NextResponse.rewrite()`: Rewrites the URL while preserving the original URL in the browser.
+
+These extensions are particularly useful for advanced routing and middleware scenarios in Next.js¹².
+
+</li>
+
+<li>
+
+### NextAuthOption for authentication
+
+
+**NextAuthOptions** is a configuration object in NextAuth.js for setting up authentication in a Next.js app. Here's a brief overview:
+
+1. **Providers**: List of authentication providers (e.g., Google, GitHub).
+2. **Secret**: A string for signing and encrypting cookies and tokens.
+3. **Session**: Configuration for managing user sessions.
+4. **Callbacks**: Functions to control authentication flow events.
+5. **Pages**: Custom URLs for authentication pages.
+6. **Events**: Hooks for running custom code on specific events.
+
+Here's a simple example:
+
+```javascript
+import NextAuth from 'next-auth';
+import GoogleProvider from 'next-auth/providers/google';
+
+export const authOptions = {
+  providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
+  ],
+  secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    strategy: 'jwt',
+  },
+  callbacks: {
+    async signIn(user, account, profile) {
+      return true;
+    },
+  },
+};
+```
+
+This sets up Google as a provider and uses environment variables for sensitive info.</li>
 
 <li>Here</li>
 
+
+
 </ol>
 
-## **Important Terms**
+# [ **Important Terms** ]
 
 <ol>
 
