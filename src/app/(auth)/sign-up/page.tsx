@@ -27,6 +27,7 @@ export default function page() {
     const [usernameMessage, setusernameMessage] = useState("");
     const [isSubmitting, setisSubmitting] = useState(false);
     const [debouncedUsername, setdebouncedUsername] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     useEffect(() => {
         const timeOut = setTimeout(() => {
             setdebouncedUsername(username);
@@ -76,6 +77,7 @@ export default function page() {
         setisSubmitting(true);
         try {
             const response = await axios.post("/api/signUp", data);
+            console.log(response);
             toast({
                 title: "Success",
                 description: response.data.message,
@@ -126,8 +128,8 @@ export default function page() {
                                     {!isCheckingUsername && usernameMessage && (
                                         <p
                                             className={`text-sm ${usernameMessage === "Username is unique"
-                                                    ? "text-green-500"
-                                                    : "text-red-500"
+                                                ? "text-green-500"
+                                                : "text-red-500"
                                                 }`}
                                         >
                                             {usernameMessage}
@@ -144,7 +146,7 @@ export default function page() {
                                 <FormItem>
                                     <FormLabel>Email</FormLabel>
                                     <Input {...field} name="email" placeholder="username" />
-                                    <p className="text-muted text-gray-400 text-sm">
+                                    <p className="text-muted text-blue-500 text-sm">
                                         We will send you a verification code
                                     </p>
                                     <FormMessage />
@@ -159,10 +161,16 @@ export default function page() {
                                     <FormLabel>Password</FormLabel>
                                     <Input
                                         {...field}
-                                        type="password"
+                                        type={showPassword ? 'text' : 'password'}
                                         name="password"
                                         placeholder="password"
                                     />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                    >
+                                        {showPassword ? 'Hide' : 'Show'} Password
+                                    </button>
                                     <p className="text-muted text-gray-400 text-sm">
                                         We will send you a verification code
                                     </p>
