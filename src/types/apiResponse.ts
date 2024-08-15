@@ -4,6 +4,6 @@ import { Message } from "@/model/User";
 export interface apiResponse{
     success:boolean;
     message:string;
-    isAcceptedingMessage?:boolean;
+    isAcceptingMessages?:boolean;
     messages?:Array<Message>
 }

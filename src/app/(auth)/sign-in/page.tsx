@@ -43,7 +43,7 @@ export default function page() {
       identifier: data.identifier,
       password: data.password
     })
-    console.log(result);
+    // console.log(result);
 
     if (result?.error) {
       toast({

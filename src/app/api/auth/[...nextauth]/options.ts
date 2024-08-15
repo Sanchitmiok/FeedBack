@@ -26,10 +26,12 @@ export const authOptions: NextAuthOptions = {
             ],
           });
           if (!user) {
+            console.log("User not found");
             throw new Error("No user found with this email or username");
           }
 
           if (!user.isVerified) {
+            console.log("User not verified")
             throw new Error("Please verify your account before login");
           }
 
@@ -39,11 +41,13 @@ export const authOptions: NextAuthOptions = {
           );
 
           if (!isPassCorrect) {
+            console.log("Password incorrect")
             throw new Error("Incorrect Password");
           } else {
             throw user;  // ye user vapas provider ke pass jyega aur fir aage use hoga
           }
         } catch (error: any) {
+          console.log("Backend Error")
           throw new Error(error);
         }
       },
