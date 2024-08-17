@@ -18,7 +18,8 @@ export async function middleware(request: NextRequest) {
       url.pathname.startsWith("/verify") ||
       url.pathname.startsWith("/"))
   ) { // u r alredy authenticated
-    return NextResponse.redirect(new URL("/dasboard", request.url));
+    console.log("Your are already verified logined")
+    return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
   if (!token && url.pathname.startsWith("/dashboard")) {

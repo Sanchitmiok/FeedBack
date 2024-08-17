@@ -3,6 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User";
+import { log } from "console";
 
 export const authOptions: NextAuthOptions = {
 
@@ -29,25 +30,29 @@ export const authOptions: NextAuthOptions = {
             console.log("User not found");
             throw new Error("No user found with this email or username");
           }
+          console.log("User = > ",user);
+          
 
           if (!user.isVerified) {
             console.log("User not verified")
             throw new Error("Please verify your account before login");
           }
+          // console.log("isVerified= > ",user.isVerified);
 
           const isPassCorrect = await bcrypt.compare( // ye compare karega given password aur database me store password ko
             credentials.password,
             user.password
           );
+          // if(isPassCorrect) console.log("Password is also correct");
+          
 
           if (!isPassCorrect) {
             console.log("Password incorrect")
             throw new Error("Incorrect Password");
-          } else {
-            throw user;  // ye user vapas provider ke pass jyega aur fir aage use hoga
           }
+            return user  // ye user vapas provider ke pass jyega aur fir aage use hoga
         } catch (error: any) {
-          console.log("Backend Error")
+          console.log("Backend Error" , error)
           throw new Error(error);
         }
       },
