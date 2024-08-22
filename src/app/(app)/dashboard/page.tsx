@@ -55,14 +55,14 @@ const page = () => {
   },[setValue , toast]
   )
 
-  const fetchMessages = useCallback(async (refersh : boolean = false) => {
+  const fetchMessages = useCallback(async (refresh : boolean = false) => {
     setisLoading(true);
     setisSwitchLoading(true);
 
     try {
       const response = await axios.get<apiResponse>('/api/get-messages');
       setMessages(response.data.messages || []);
-      if(refersh){
+      if(refresh){
         toast({
           title: 'Refreshed Messages',
           description: 'Showing latest messages',

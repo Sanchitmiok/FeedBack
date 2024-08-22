@@ -6,7 +6,7 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-// import dayjs from 'dayjs';
+import { format } from 'date-fns';
 import {
     AlertDialog,
     AlertDialogAction,
@@ -30,6 +30,8 @@ type MessageCardProps = {
 };
 
 function MessageCard({ message, onMessageDelete }: MessageCardProps) {
+    const now = new Date();
+    const formattedDate = format(now, 'MMM d, yyyy h:mm a'); 
     const { toast } = useToast();
     const HandleDeleteConfirm = async () => {
         try {
@@ -74,7 +76,7 @@ function MessageCard({ message, onMessageDelete }: MessageCardProps) {
                         </AlertDialog>
                     </div>
                     <div>
-                        {/* {dayjs(message.createdAt).formate('MMM D, YYYY h:mm A')} */}
+                        {formattedDate}
                     </div>
                 </CardHeader>
                 <CardContent>
