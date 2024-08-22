@@ -56,10 +56,11 @@ export async function GET(request:Request){
                 }
               );
         }
+        console.log(user[0].messages)
 
         return Response.json(
             {
-              message:user[0].messages,
+              messages:user[0].messages,
             },
             {
               status: 200

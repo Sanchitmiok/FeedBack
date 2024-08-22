@@ -54,12 +54,12 @@ function MessageCard({ message, onMessageDelete }: MessageCardProps) {
     return (
         <div>
             <Card className="card-bordered">
-                <CardHeader>
-                    <CardTitle>{message.content}</CardTitle>
+                <CardHeader >
                     <div className="flex justify-between items-center">
+                    <CardTitle>{message.content}</CardTitle>
                         <AlertDialog>
                             <AlertDialogTrigger asChild>
-                                <Button variant="outline"><X className="w-5 h-5" /></Button>
+                                <Button variant="outline"><X className="w-5 h-5 fill-red-400" /></Button>
                             </AlertDialogTrigger>
                             <AlertDialogContent>
                                 <AlertDialogHeader>
@@ -79,9 +79,6 @@ function MessageCard({ message, onMessageDelete }: MessageCardProps) {
                         {formattedDate}
                     </div>
                 </CardHeader>
-                <CardContent>
-                    <p>Card Content</p>
-                </CardContent>
             </Card>
 
         </div>

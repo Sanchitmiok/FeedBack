@@ -37,6 +37,7 @@ export async function POST(request: Request) {
     const newMessage = { content, createdAt: new Date() };
 
     user.messages.push(newMessage as Message);
+    // console.log(newMessage);
     await user.save();
 
     return Response.json(

@@ -16,14 +16,14 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 const page = () => {
-  const [Messages, setMessages] = useState<Message[]>([])
-  const [isLoading, setisLoading] = useState(false)
+  const [messages, setMessages] = useState<Message[]>([])
+  const [isLoading, setIsLoading] = useState(false)
   const [isSwitchLoading, setisSwitchLoading] = useState(false)
 
   const {toast} = useToast();
 
   const handleDeleteMessage = (messageId : string)=>{
-    setMessages(Messages.filter((message)=> message._id !== messageId));
+    setMessages(messages.filter((message)=> message._id !== messageId));
   };
 
   const {data : session} = useSession();
@@ -34,8 +34,8 @@ const page = () => {
 
   //TODO: form ke bare me jano thoda sa
   const {register , watch , setValue} = form;
-
   const acceptMessages = watch('acceptMessages');
+
   const fetchAcceptMessages = useCallback(async () => {
     setisSwitchLoading(true)
     try {
@@ -56,11 +56,12 @@ const page = () => {
   )
 
   const fetchMessages = useCallback(async (refresh : boolean = false) => {
-    setisLoading(true);
-    setisSwitchLoading(true);
+    setIsLoading(true);
+    setisSwitchLoading(false);
 
     try {
       const response = await axios.get<apiResponse>('/api/get-messages');
+      console.log("Here is your response ",response.data.messages)
       setMessages(response.data.messages || []);
       if(refresh){
         toast({
@@ -77,10 +78,10 @@ const page = () => {
           variant: 'destructive',
         });
     }finally{
-      setisLoading(false)
+      setIsLoading(false)
       setisSwitchLoading(false);
     }
-  },[setisLoading , setMessages , toast]
+  },[setIsLoading , setMessages , toast]
   )
 
   useEffect(()=>{
@@ -111,7 +112,8 @@ const page = () => {
     }
   }
 
-  if(!session || !session.user) return <div>Access Denied</div>
+  if(!session || !session.user) return <div>Access Denied</div>;
+
   const {username} = session?.user as User
   const baseUrl = `${window.location.protocol}//${window.location.host}`;
   const profileUrl = `${baseUrl}/u/${username}`;
@@ -171,10 +173,10 @@ const page = () => {
         )}
       </Button>
       <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
-        {Messages.length > 0 ? (
-          Messages.map((message, index) => (
+        {messages.length > 0 ? (
+          messages.map((message,index) => (
             <MessageCard
-              key={index}
+               key = {message._id as any}
               message={message}
               onMessageDelete={handleDeleteMessage}
             />
