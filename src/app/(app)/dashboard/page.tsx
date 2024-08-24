@@ -61,7 +61,7 @@ const page = () => {
 
     try {
       const response = await axios.get<apiResponse>('/api/get-messages');
-      console.log("Here is your response ",response.data.messages)
+      // console.log("Here is your response ",response.data.messages)
       setMessages(response.data.messages || []);
       if(refresh){
         toast({

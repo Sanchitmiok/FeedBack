@@ -25,7 +25,6 @@ import { useState } from "react";
 import axios, { AxiosError } from "axios";
 import { apiResponse } from "@/types/apiResponse";
 import { toast } from "@/components/ui/use-toast";
-import { Input } from "@/components/ui/input";
 import Link from "next/link";
 const initialMessageString =
   "What's your favorite movie?||Do you have any pets?||What's your dream job?";
@@ -45,7 +44,9 @@ function page() {
     api: '/api/suggest-message',
     initialCompletion: initialMessageString
   });
-  console.log(completion)
+  if(error){
+    console.log("erro during ai")
+  }
   const form = useForm<z.infer<typeof messageSchema>>({
     resolver: zodResolver(messageSchema)
   })
@@ -83,6 +84,9 @@ function page() {
 
   const fetchSuggestedMessage = async () => {
     try {
+      console.log("Clicked")
+      const response = await axios.post('/api/suggest-message');
+      console.log(response)
 
     } catch (error) {
       console.error('Error fetching messages: ', error)

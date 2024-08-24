@@ -30,14 +30,15 @@ type MessageCardProps = {
 };
 
 function MessageCard({ message, onMessageDelete }: MessageCardProps) {
-    const now = new Date();
-    const formattedDate = format(now, 'MMM d, yyyy h:mm a'); 
+    const formattedDate = format(message.createdAt, 'MMM d, yyyy h:mm a'); 
     const { toast } = useToast();
     const HandleDeleteConfirm = async () => {
         try {
             const response = await axios.delete<apiResponse>(`/api/delete-message/${message._id}`);
+            console.log("Here is your response ",response)
             toast({
                 title: response.data.message,
+                variant:'default'
             })
             onMessageDelete(message._id as string);
         } catch (error) {

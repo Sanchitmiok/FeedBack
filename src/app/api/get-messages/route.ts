@@ -56,7 +56,7 @@ export async function GET(request:Request){
                 }
               );
         }
-        console.log(user[0].messages)
+        // console.log(user[0].messages)
 
         return Response.json(
             {

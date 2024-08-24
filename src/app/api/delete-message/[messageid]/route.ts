@@ -3,6 +3,8 @@ import UserModel from "@/model/User";
 import { User } from "next-auth";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../../auth/[...nextauth]/options";
+import { Message } from "@/model/User";
+import { NextRequest } from "next/server";
 
 export async function DELETE(
     request: Request,
@@ -29,8 +31,10 @@ export async function DELETE(
     try {
         const updatedUser = await UserModel.updateOne(
             { _id: _user._id },
-            { $pull: { messages: { _id: messageId } } }
+            { $pull: { messages: { _id: messageId } } },
+            { new: true }
         );
+        console.log(updatedUser)
         if (updatedUser.modifiedCount === 0) {
             return Response.json(
                 {
@@ -42,6 +46,7 @@ export async function DELETE(
                 }
             );
         }
+        // console.log("Message deleted succesfully")
 
         return Response.json(
             {
