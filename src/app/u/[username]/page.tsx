@@ -10,7 +10,6 @@ import { useCompletion } from 'ai/react';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -33,10 +32,6 @@ const parseStringMessages = (messageString: string): string[] => {
   return messageString.split(specialChar);
 };
 
-
-
-
-
 function page() {
   const params = useParams<{ username: string }>();
   const username = params.username;
@@ -44,9 +39,6 @@ function page() {
     api: '/api/suggest-message',
     initialCompletion: initialMessageString
   });
-  if(error){
-    console.log("erro during ai")
-  }
   const form = useForm<z.infer<typeof messageSchema>>({
     resolver: zodResolver(messageSchema)
   })
@@ -84,14 +76,13 @@ function page() {
 
   const fetchSuggestedMessage = async () => {
     try {
-      console.log("Clicked")
-      const response = await axios.post('/api/suggest-message');
+      const response = await axios.get<string>('/api/suggest-message');
       console.log(response)
-
+      const parsedMessages = parseStringMessages(response.data); // Parse messages if needed
     } catch (error) {
-      console.error('Error fetching messages: ', error)
+      console.error('Error fetching messages: ', error);
     }
-  }
+  };
   return (
     <div className="container mx-auto my-8 p-6 bg-white rounded max-w-4xl">
       <h1 className="text-4xl font-bold mb-6 text-center">
