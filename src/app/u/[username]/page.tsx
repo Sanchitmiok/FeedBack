@@ -74,15 +74,15 @@ function page() {
     }
   }
 
-  const fetchSuggestedMessage = async () => {
-    try {
-      const response = await axios.get<string>('/api/suggest-message');
-      console.log(response)
-      const parsedMessages = parseStringMessages(response.data); // Parse messages if needed
-    } catch (error) {
-      console.error('Error fetching messages: ', error);
-    }
-  };
+  // const fetchSuggestedMessage = async () => {
+  //   try {
+  //     const response = await axios.get<string>('/api/suggest-message');
+  //     console.log(response)
+  //     const parsedMessages = parseStringMessages(response.data); // Parse messages if needed
+  //   } catch (error) {
+  //     console.error('Error fetching messages: ', error);
+  //   }
+  // };
   return (
     <div className="container mx-auto my-8 p-6 bg-white rounded max-w-4xl">
       <h1 className="text-4xl font-bold mb-6 text-center">
@@ -113,9 +113,9 @@ function page() {
       </Form>
       <div className="space-y-4 my-8">
         <div className="space-y-2">
-          <Button onClick={fetchSuggestedMessage} className="my-4"
-            disabled={isSuggestLoading}>Suggest messages</Button>
-          <p>Click on any message below to select it.</p>
+          {/* <Button onClick={fetchSuggestedMessage} className="my-4"
+            disabled={isSuggestLoading}>Suggest messages</Button> */}
+          <p>Frequent Messages.</p>
         </div>
         <Card>
           <CardHeader>
