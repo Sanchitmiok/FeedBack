@@ -111,37 +111,12 @@ function page() {
           </div>
         </form>
       </Form>
-      <div className="space-y-4 my-8">
-        <div className="space-y-2">
-          {/* <Button onClick={fetchSuggestedMessage} className="my-4"
-            disabled={isSuggestLoading}>Suggest messages</Button> */}
-          <p>Frequent Messages.</p>
-        </div>
-        <Card>
-          <CardHeader>
-            <CardTitle>Message</CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-col space-y-4" >
-            {error ? (
-              <p className="text-red-500">{error.message}</p>
-            ) : (
-              parseStringMessages(completion).map((message, index) => (
-                <Button
-                  key={index}
-                  variant="outline"
-                  className="mb-2"
-                  onClick={() => handleMessageClick(message)}
-                >
-                  {message}
-                </Button>
-              ))
-            )}
-          </CardContent>
-        </Card>
-      </div>
-      <Separator className="my-6"/>
+      
+  
+      
+      
       <div className="text-center">
-        <div className="mb-4">Get Your Message Board</div>
+        <div className="m-4">Get Your Message Board</div>
         <Link href={'/sign-up'}>
           <Button>Create Your Account</Button>
         </Link>

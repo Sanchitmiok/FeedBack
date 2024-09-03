@@ -12,7 +12,7 @@ function NavBar() {
     return (
         <nav className="p-4 md:p-6 shadow-md bg-gray-900 text-white ">
             <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
-                <a href="/" className='text-xl font-bold mb-4 md:mb-0'>True Feedback</a>
+                <a href="/" className='text-xl font-bold mb-4 md:mb-0'>PureFeedback</a>
                 {session ?( <>
                     <span className="mr-4">
                         Welcome , {user.username || user.email}

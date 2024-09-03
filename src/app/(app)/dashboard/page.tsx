@@ -71,12 +71,14 @@ const page = () => {
       }
     } catch (error) {
       const axiosError = error as AxiosError<apiResponse>;
-        toast({
-          title: 'Error',
-          description:
-            axiosError.response?.data.message ?? 'Failed to fetch messages',
-          variant: 'destructive',
-        });
+       if(axiosError.response?.data.message != 'Messages not found'){
+         toast({
+           title: 'Error',
+           description:
+             axiosError.response?.data.message ?? 'Failed to fetch messages',
+           variant: 'destructive',
+         });
+       }
     }finally{
       setIsLoading(false)
       setisSwitchLoading(false);
@@ -134,7 +136,7 @@ const page = () => {
 
       <div className="mb-4">
         <h2 className="text-lg font-semibold mb-2">Copy Your Unique Link</h2>{' '}
-        <div className="flex items-center">
+        <div className="flex flex-col sm:flex-col md:flex-row items-start">
           <input
             type="text"
             value={profileUrl}
