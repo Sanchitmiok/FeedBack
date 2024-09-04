@@ -6,7 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "PureFeedbackk",
+  title: "PureFeedback",
   description: "Apki raay , kisi kaam ki nahi",
 };
 
