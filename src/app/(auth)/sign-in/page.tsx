@@ -20,7 +20,7 @@ import { useState } from "react";
 import { signInSchema } from "@/Schemas/signInSchema";
 import { signIn } from "next-auth/react";
 
-export default function page() {
+export default function Page() {
 
   const [showPassword, setShowPassword] = useState(false)
   const [isSubmitting, setisSubmitting] = useState(false);

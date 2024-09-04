@@ -22,7 +22,7 @@ import { string } from "zod";
 import { messageSchema } from "@/Schemas/messageSchema";
 import { useState } from "react";
 import axios, { AxiosError } from "axios";
-import { apiResponse } from "@/types/apiResponse";
+import { ApiResponse } from '@/types/apiResponse'
 import { toast } from "@/components/ui/use-toast";
 import Link from "next/link";
 const initialMessageString =
@@ -32,7 +32,7 @@ const parseStringMessages = (messageString: string): string[] => {
   return messageString.split(specialChar);
 };
 
-function page() {
+function Page() {
   const params = useParams<{ username: string }>();
   const username = params.username;
   const { completion, isLoading: isSuggestLoading, error } = useCompletion({
@@ -51,7 +51,7 @@ function page() {
   const onSubmit = async (data: z.infer<typeof messageSchema>) => {
     setisLoading(true);
     try {
-      const response = await axios.post<apiResponse>('/api/send-message', {
+      const response = await axios.post<ApiResponse>('/api/send-message', {
         username,
         ...data
       });
@@ -62,7 +62,7 @@ function page() {
       });
       form.reset({ ...form.getValues(), content: '' });
     } catch (error) {
-      const axiosError = error as AxiosError<apiResponse>;
+      const axiosError = error as AxiosError<ApiResponse>;
       toast({
         title: 'Error',
         description:
@@ -126,4 +126,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { apiResponse } from "@/types/apiResponse";
+import { ApiResponse } from '@/types/apiResponse'
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -21,7 +21,7 @@ import { useRouter } from "next/navigation";
 import { signUpSchema } from "@/Schemas/signUpSchema";
 import { useEffect, useState } from "react";
 
-export default function page() {
+export default function Page() {
     const [username, setusername] = useState("");
     const [isCheckingUsername, setisCheckingUsername] = useState(false);
     const [usernameMessage, setusernameMessage] = useState("");
@@ -54,13 +54,13 @@ export default function page() {
                 setisCheckingUsername(true);
                 setusernameMessage("");
                 try {
-                    const response = await axios.get<apiResponse>(
+                    const response = await axios.get<ApiResponse>(
                         `/api/check-username-unique?username=${debouncedUsername}`
                     );
                     console.log(response.data);
                     setusernameMessage(response.data.message);
                 } catch (error) {
-                    const axiosError = error as AxiosError<apiResponse>;
+                    const axiosError = error as AxiosError<ApiResponse>;
                     setusernameMessage(
                         axiosError.response?.data.message ?? "Error checking username"
                     );
@@ -87,7 +87,7 @@ export default function page() {
             setisSubmitting(false);
         } catch (error) {
             console.error("Error during sign up ", error);
-            const axiosError = error as AxiosError<apiResponse>;
+            const axiosError = error as AxiosError<ApiResponse>;
 
             let errorMessage = axiosError.response?.data.message;
             toast({

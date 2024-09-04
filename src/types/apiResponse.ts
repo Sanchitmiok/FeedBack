@@ -1,7 +1,7 @@
 import { Message } from "@/model/User";
 
 //typescript
-export interface apiResponse{
+export interface ApiResponse{
     success:boolean;
     message:string;
     isAcceptingMessages?:boolean;

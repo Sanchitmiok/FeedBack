@@ -5,7 +5,7 @@ import { Form, FormField, FormItem, FormLabel, FormMessage } from "@/components/
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { verifySchema } from "@/Schemas/verifySchema";
-import { apiResponse } from "@/types/apiResponse";
+import { ApiResponse } from '@/types/apiResponse'
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios, { AxiosError } from "axios";
 import { useParams, useRouter } from "next/navigation"
@@ -25,7 +25,7 @@ export default function VerifyAccount() {
 
     const onSubmit = async (data: z.infer<typeof verifySchema>) => {
         try {
-            const response = await axios.post<apiResponse>('/api/verify-code', {
+            const response = await axios.post<ApiResponse>('/api/verify-code', {
                 username: params.username,
                 code: data.code
             });
@@ -36,7 +36,7 @@ export default function VerifyAccount() {
             router.replace('/sign-in');
 
         } catch (error) {
-            const axisError = error as AxiosError<apiResponse>
+            const axisError = error as AxiosError<ApiResponse>
             toast({
                 title: "Verification failed",
                 description: axisError.response?.data.message ?? 'An errro occured during verification : pls try again',

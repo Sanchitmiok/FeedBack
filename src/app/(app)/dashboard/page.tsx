@@ -6,7 +6,7 @@ import { Switch } from '@/components/ui/switch'
 import { useToast } from '@/components/ui/use-toast'
 import { Message } from '@/model/User'
 import { acceptMessageSchema } from '@/Schemas/acceptMessageSchema'
-import { apiResponse } from '@/types/apiResponse'
+import { ApiResponse } from '@/types/apiResponse'
 import { zodResolver } from '@hookform/resolvers/zod'
 import axios, { AxiosError } from 'axios'
 import { Loader2, RefreshCcw } from 'lucide-react'
@@ -15,7 +15,7 @@ import { useSession } from 'next-auth/react'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-const page = () => {
+const Page = () => {
   const [messages, setMessages] = useState<Message[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [isSwitchLoading, setisSwitchLoading] = useState(false)
@@ -39,10 +39,10 @@ const page = () => {
   const fetchAcceptMessages = useCallback(async () => {
     setisSwitchLoading(true)
     try {
-      const response = await axios.get<apiResponse>('/api/accept-messages');
+      const response = await axios.get<ApiResponse>('/api/accept-messages');
       setValue('acceptMessages' , response.data.isAcceptingMessages)
     } catch (error) {
-      const axiosError = error as AxiosError<apiResponse>
+      const axiosError = error as AxiosError<ApiResponse>
       toast({
         title:"Error",
         description : axiosError.response?.data.message ?? "Failed to fetch status",
@@ -60,7 +60,7 @@ const page = () => {
     setisSwitchLoading(false);
 
     try {
-      const response = await axios.get<apiResponse>('/api/get-messages');
+      const response = await axios.get<ApiResponse>('/api/get-messages');
       // console.log("Here is your response ",response.data.messages)
       setMessages(response.data.messages || []);
       if(refresh){
@@ -70,7 +70,7 @@ const page = () => {
         });
       }
     } catch (error) {
-      const axiosError = error as AxiosError<apiResponse>;
+      const axiosError = error as AxiosError<ApiResponse>;
        if(axiosError.response?.data.message != 'Messages not found'){
          toast({
            title: 'Error',
@@ -94,7 +94,7 @@ const page = () => {
 
   const handleSwitchChange = async () => {
     try {
-      const response = await axios.post<apiResponse>('/api/accept-messages' , {acceptMessages : !acceptMessages})
+      const response = await axios.post<ApiResponse>('/api/accept-messages' , {acceptMessages : !acceptMessages})
       setValue('acceptMessages' , !acceptMessages);
       toast({
         title: response.data.message,
@@ -103,7 +103,7 @@ const page = () => {
 
       
     } catch (error) {
-      const axiosError = error as AxiosError<apiResponse>;
+      const axiosError = error as AxiosError<ApiResponse>;
       toast({
         title: 'Error',
         description:
@@ -191,4 +191,4 @@ const page = () => {
   );
 }
 
-export default page
+export default Page
