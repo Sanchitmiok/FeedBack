@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "PureFeedback",
-  description: "Apki raay , kisi kaam ki nahi",
+  description: "सत्यं ब्रूयात् प्रियं ब्रूयात् || Speak the truth, speak pleasantly.",
 };
 
 export default function RootLayout({
