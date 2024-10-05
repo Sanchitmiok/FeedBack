@@ -29,11 +29,15 @@ export async function DELETE(
         );
     }
     try {
+        // const updatedUser = await UserModel.updateOne(
+        //     { _id: _user._id },
+        //     { $pull: { messages: { _id: messageId } } },
+        //     { new: true }
+        // );
         const updatedUser = await UserModel.updateOne(
             { _id: _user._id },
-            { $pull: { messages: { _id: messageId } } },
-            { new: true }
-        );
+            { $pull: { messages: { _id: messageId } } }
+          );
         console.log(updatedUser)
         if (updatedUser.modifiedCount === 0) {
             return Response.json(

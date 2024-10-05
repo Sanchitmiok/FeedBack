@@ -20,7 +20,7 @@ export async function middleware(request: NextRequest) {
       url.pathname.startsWith("/verify") ||
       url.pathname === "/")
   ) { // u r alredy authenticated
-    console.log("Your are already verified logined")
+    console.log("Your are already verified and logged in")
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
