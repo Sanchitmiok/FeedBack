@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![Feedback App](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F012%2F043%2F574%2Flarge_2x%2Ffeedback-customer-satisfaction-concept-on-virtual-screen-quality-opinion-rating-service-online-review-testimonials-robotic-hand-touching-digital-interface-illustration-vector.jpg&f=1&nofb=1&ipt=d3bf11bfe29b68b48ce981fdb237c3b48f787d29747660d8ec26cc4799609149)
 
-## Getting Started
+# Feedback App
 
-First, run the development server:
+A modern web application for collecting and managing user feedback efficiently.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+
+## Quick Start Demo
+
+<!-- Optionally add a screenshot or gif of your app here -->
+![Demo Preview](/public/image.png)
+
+The Feedback App allows users to submit feedback and view all entries through a clean, intuitive interface.
+
+---
+
+## Table of Contents
+
+- [Feedback App](#feedback-app)
+- [Quick Start Demo](#quick-start-demo)
+- [Table of Contents](#table-of-contents)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Development](#development)
+- [Contributing](#contributing)
+- [License](#license)
+
+---
+
+## Installation
+[(Back to top)](#table-of-contents)
+
+Clone the repository and install dependencies:
+
+```shell
+git clone https://github.com/Sanchitmiok/FeedBack
+cd FeedBack
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Usage
+[(Back to top)](#table-of-contents)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Start the application:
 
-## Learn More
+```shell
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+Visit [http://localhost:3000](http://localhost:3000) in your browser to access the app.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Development
+[(Back to top)](#table-of-contents)
 
-## Deploy on Vercel
+To run the app in development mode with hot reloading:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```shell
+npm run dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+To build for production:
+
+```shell
+npm run build
+```
+
+---
+
+## Contributing
+[(Back to top)](#table-of-contents)
+
+Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+
+---
+
+## License
+[(Back to top)](#table-of-contents)
+
+Distributed under the [MIT license](./LICENSE).
+
+
+
