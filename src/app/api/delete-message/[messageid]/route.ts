@@ -5,6 +5,7 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "../../auth/[...nextauth]/options";
 import { Message } from "@/model/User";
 import { NextRequest } from "next/server";
+import { Types } from "mongoose";
 
 export async function DELETE(
     request: Request,
@@ -29,14 +30,9 @@ export async function DELETE(
         );
     }
     try {
-        // const updatedUser = await UserModel.updateOne(
-        //     { _id: _user._id },
-        //     { $pull: { messages: { _id: messageId } } },
-        //     { new: true }
-        // );
         const updatedUser = await UserModel.updateOne(
             { _id: _user._id },
-            { $pull: { messages: { _id: messageId } } }
+            { $pull: { messages: { _id: new Types.ObjectId(messageId) } } }
           );
         console.log(updatedUser)
         if (updatedUser.modifiedCount === 0) {
@@ -74,3 +70,4 @@ export async function DELETE(
         );
     }
 }
+      

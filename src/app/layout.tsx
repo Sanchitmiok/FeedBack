@@ -6,8 +6,8 @@ import { Toaster } from "@/components/ui/toaster";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "PureFeedback",
-  description: "सत्यं ब्रूयात् प्रियं ब्रूयात् || Speak the truth, speak pleasantly.",
+  title: "The Suggestion Box",
+  description: "FeedBack is a simple web app where users can create a public profile link and receive anonymous messages from others. Users can view and delete their messages and create an account. The app is built with Next.js and MongoDB.",
 };
 
 export default function RootLayout({
