@@ -1,12 +1,9 @@
 'use client';
 
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { CardHeader, CardContent, Card, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
-import { useCompletion } from 'ai/react';
 import {
   Form,
   FormControl,
@@ -18,27 +15,16 @@ import {
 import * as z from 'zod';
 import { Textarea } from "@/components/ui/textarea"
 import { useParams } from "next/navigation";
-import { string } from "zod";
 import { messageSchema } from "@/Schemas/messageSchema";
 import { useState } from "react";
 import axios, { AxiosError } from "axios";
 import { ApiResponse } from '@/types/apiResponse'
 import { toast } from "@/components/ui/use-toast";
 import Link from "next/link";
-const initialMessageString =
-  "What's your favorite movie?||Do you have any pets?||What's your dream job?";
-const specialChar = '||';
-const parseStringMessages = (messageString: string): string[] => {
-  return messageString.split(specialChar);
-};
 
 function Page() {
   const params = useParams<{ username: string }>();
   const username = params.username;
-  const { completion, isLoading: isSuggestLoading, error } = useCompletion({
-    api: '/api/suggest-message',
-    initialCompletion: initialMessageString
-  });
   const form = useForm<z.infer<typeof messageSchema>>({
     resolver: zodResolver(messageSchema)
   })
@@ -74,15 +60,7 @@ function Page() {
     }
   }
 
-  // const fetchSuggestedMessage = async () => {
-  //   try {
-  //     const response = await axios.get<string>('/api/suggest-message');
-  //     console.log(response)
-  //     const parsedMessages = parseStringMessages(response.data); // Parse messages if needed
-  //   } catch (error) {
-  //     console.error('Error fetching messages: ', error);
-  //   }
-  // };
+
   return (
     <div className="container mx-auto my-8 p-6 bg-white rounded max-w-4xl">
       <h1 className="text-4xl font-bold mb-6 text-center">
