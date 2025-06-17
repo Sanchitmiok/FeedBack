@@ -14,7 +14,7 @@ import { User } from 'next-auth'
 import { useSession } from 'next-auth/react'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-
+import { useRouter } from 'next/navigation'
 const Page = () => {
   const [messages, setMessages] = useState<Message[]>([])
   const [isLoading, setIsLoading] = useState(false)
@@ -114,7 +114,11 @@ const Page = () => {
     }
   }
 
-  if(!session || !session.user) return <div>Access Denied</div>;
+  const router = useRouter();
+  if(!session || !session.user){
+    router.push('/sign-in');
+    return null;
+  }
 
   const {username} = session?.user as User
   const baseUrl = `${window.location.protocol}//${window.location.host}`;
