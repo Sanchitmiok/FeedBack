@@ -56,6 +56,7 @@ export async function DELETE(
             (msg: any) => msg._id.toString() === messageId
         );
         if (messageStillExists) {
+            // If the message still exists, it means it was not deleted
             return Response.json(
                 {
                     success: false,
